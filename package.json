@@ -1,0 +1,16 @@
+{
+  "name": "konux-cs",
+  "private": true,
+  "workspaces": [
+     "packages/*"
+  ],  
+  "devDependencies": {
+    "lerna": "^3.13.2"
+  },
+  "scripts": {
+    "new-version": "lerna version --conventional-commits --yes",
+    "build": "lerna run build --stream",
+    "start": "lerna run start --stream",
+    "prettify": "lerna run prettier:write"
+  }
+}
