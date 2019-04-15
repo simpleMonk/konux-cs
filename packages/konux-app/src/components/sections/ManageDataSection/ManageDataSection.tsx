@@ -15,8 +15,10 @@ const StyledFlexibleLayout = styled(FlexibleLayout)`
   min-height: 250px;
   flex: 0 1 auto;
   position: relative;
-  box-shadow: 0px 1px 4px 0px hsla(0, 0%, 0%, 0.2);
   margin: 15px;
+  background: ${Colors.WHITE};
+  box-shadow: -4px 4px 4px -4px hsla(0,0%,0%,0.15);
+  margin: 0.6px;
 `;
 
 const TitleHeader = styled.header`

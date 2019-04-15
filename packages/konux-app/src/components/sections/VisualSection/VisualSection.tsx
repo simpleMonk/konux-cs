@@ -11,7 +11,8 @@ const FlexibleLayout = styled.div`
 const StyledFlexibleLayout = styled(FlexibleLayout)`
   position: relative;
   box-shadow: 0px 1px 4px 0px hsla(0, 0%, 0%, 0.2);
-  margin: 15px;
+  margin: 23px;
+  background: ${Colors.WHITE};
 `;
 
 const VisualSection: React.FC = () => <StyledFlexibleLayout />;
