@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ManageDataSection } from '../ManageDataSection/ManageDataSection';
 import { VisualSection } from '../VisualSection/VisualSection';
 import { Colors } from '../../../utils/Colors';
+import { TimeSeriesType } from '../../types';
 
 const StyledMainSection = styled.section`
   width: 100%;
@@ -17,13 +18,20 @@ const StyledMainSection = styled.section`
 `;
 
 const MainSection = () => {
+  const [timeSeriesData, setTimeSeriesData] = useState<TimeSeriesType>({
+    data: [
+      { x: '2018-04-20T12:45:03+04:00', y: 10 },
+      { x: '2018-04-21T12:45:03+04:00', y: 10 },
+      { x: '2018-04-22T12:45:03+04:00', y: 10 },
+      { x: '2018-04-23T12:45:03+04:00', y: 10 }
+    ]
+  });
   return (
     <StyledMainSection>
-      <VisualSection />
+      <VisualSection {...timeSeriesData} />
       <ManageDataSection />
     </StyledMainSection>
   );
 };
-MainSection.displayName = 'MainSection';
 
 export { MainSection };

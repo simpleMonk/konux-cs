@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
+import { KonuxTimeSeries } from '../../design-systems/KonuxTimeSeries/KonuxTimeSeries';
 import { Colors } from '../../../utils/Colors';
+import { TimeSeriesType } from '../../types';
 
 const FlexibleLayout = styled.div`
   display: flex;
@@ -15,7 +17,13 @@ const StyledFlexibleLayout = styled(FlexibleLayout)`
   background: ${Colors.WHITE};
 `;
 
-const VisualSection: React.FC = () => <StyledFlexibleLayout />;
+const VisualSection: FunctionComponent<TimeSeriesType> = (
+  props: TimeSeriesType
+) => (
+  <StyledFlexibleLayout>
+    <KonuxTimeSeries {...props} />
+  </StyledFlexibleLayout>
+);
 VisualSection.displayName = 'VisualSection';
 
 export { VisualSection };

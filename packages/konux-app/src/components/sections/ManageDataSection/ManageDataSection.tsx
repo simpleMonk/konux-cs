@@ -17,7 +17,7 @@ const StyledFlexibleLayout = styled(FlexibleLayout)`
   position: relative;
   margin: 15px;
   background: ${Colors.WHITE};
-  box-shadow: -4px 4px 4px -4px hsla(0,0%,0%,0.15);
+  box-shadow: -4px 4px 4px -4px hsla(0, 0%, 0%, 0.15);
   margin: 0.6px;
 `;
 
