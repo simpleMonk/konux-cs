@@ -2,15 +2,23 @@
   "name": "konux-cs",
   "private": true,
   "workspaces": [
-     "packages/*"
-  ],  
+    "packages/*"
+  ],
   "devDependencies": {
-    "lerna": "^3.13.2"
+    "lerna": "^3.13.2",
+    "husky": "^1.3.1"
   },
   "scripts": {
     "new-version": "lerna version --conventional-commits --yes",
     "build": "lerna run build --stream",
     "start": "lerna run start --stream",
-    "prettify": "lerna run prettier:write"
+    "prettify": "lerna run prettier:write",
+    "test": "lerna exec -- yarn run test --no-watchman --coverage"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn test",
+      "pre-push": "yarn test"
+    }
   }
 }
