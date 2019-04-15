@@ -1,5 +1,6 @@
 export const Colors = Object.freeze({
   ACCENT: '#278EFC',
   WHITE: '#FFFFFF',
-  LIGHTGRAY: '#BDC0C4'
+  LIGHTGRAY: '#BDC0C4',
+  GRAY: '#343D47'
 });

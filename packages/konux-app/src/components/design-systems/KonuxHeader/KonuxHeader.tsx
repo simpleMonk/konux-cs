@@ -25,5 +25,4 @@ const KonuxHeader: React.FC = () => (
 );
 KonuxHeader.displayName = 'KonuxHeader';
 
-export {KonuxHeader};
-
+export { KonuxHeader };
