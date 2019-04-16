@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { KonuxPrimaryButton } from '../../design-systems/KonuxButton/KonuxButton';
 import { KonuxInput } from '../../design-systems/KonuxInput/KonuxInput';
+import { KonuxDateTimePicker } from '../../design-systems/KonuxDateTimePicker/KonuxDateTimePicker';
 import { Colors } from '../../../utils/Colors';
 
 const FlexibleLayout = styled.div`
@@ -53,6 +54,9 @@ const ManageDataSection: React.FC = () => (
     <FormSection>
       <Cell>
         <KonuxInput type="text" placeholder="Add point here" />
+      </Cell>
+      <Cell>
+        <KonuxDateTimePicker />
       </Cell>
       <Cell>
         <StyledKonuxPrimaryButton

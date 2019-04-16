@@ -17,3 +17,7 @@ export interface ChartOptions extends TimeSeriesType {
     left: number;
   };
 }
+
+export interface DateTimeProps {
+  dateTime?: string;
+}
