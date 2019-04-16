@@ -13,7 +13,7 @@
     "build": "lerna run build --stream",
     "start": "lerna run start --stream",
     "prettify": "lerna run prettier:write",
-    "test": "lerna exec -- yarn run test --no-watchman --coverage"
+    "test": "lerna exec -- yarn run test --no-watchman --coverage --collectCoverageFrom=src/**/*.{ts,tsx}  --collectCoverageFrom=!src/**/*.stories.js"
   },
   "husky": {
     "hooks": {
