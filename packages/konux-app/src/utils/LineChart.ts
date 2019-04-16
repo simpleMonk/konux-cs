@@ -67,7 +67,6 @@ const LineChart = (dom: HTMLDivElement | null, chartOptions: ChartOptions) => {
     .style('opacity', 0);
 
   function showToolTip(d: any) {
-    console.log('called show tooltip', d,div,d3.event);
     div
       .transition()
       .duration(200)
@@ -98,18 +97,17 @@ const LineChart = (dom: HTMLDivElement | null, chartOptions: ChartOptions) => {
     xScale.range([margin.left, newWidth]);
 
     // Set y scale range
-    yScale.range([newHeight, margin.bottom]);
+    yScale.range([newHeight, margin.top]);
 
     // Set SVG dimensions
     svg
-      .attr('width', newWidth + margin.left + margin.right)
-      .attr('height', newHeight + margin.top + margin.bottom)
+      .attr('width', newWidth)
+      .attr('height', newHeight)
       .attr(
         'viewBox',
-        `0 0 ${newWidth + margin.left + margin.right} ${newHeight +
-          margin.top +
-          margin.bottom}`
+        `0 0 ${newWidth + margin.left + margin.right} ${newHeight + margin.top}`
       )
+      .attr('preserveAspectRatio', 'xMinYMin meet')
       .append('g')
       .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
