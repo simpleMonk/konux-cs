@@ -1,8 +1,9 @@
 /* Style the lines by removing the fill and applying a stroke */
 .line {
     fill: none;
-    stroke: #ffab00;
-    stroke-width: 3;
+    stroke: #278EFC;
+    stroke-width: 2;
+    shape-rendering: crispEdges;
 }
   
 .overlay {
@@ -12,11 +13,43 @@
 
 /* Style the dots by assigning a fill and stroke */
 .dot {
-    fill: #ffab00;
-    stroke: #fff;
+    fill: #278EFC;
+    stroke: #FFFFFF;
 }
   
-  .focus circle {
+.focus circle {
   fill: none;
   stroke: steelblue;
+}
+
+svg {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.tooltip {	
+    position: absolute;			
+    text-align: left;			
+    width: 80px;					
+    height: 40px;					
+    padding: 2px;				
+    font: 12px sans-serif;		
+    background:#343D47;	
+    color: #FFFFFF;
+    border: 0px;		
+    border-radius: 3px;			
+    pointer-events: none;	
+    
+    .tooltip__title{
+        font-size: 12px;
+        font-weight: bold;
+        padding: 2px;
+    }
+
+    .tooltip__content{
+        font-size: 13px;
+        padding: 2px;
+    }
 }

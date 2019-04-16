@@ -5,6 +5,7 @@ import { ManageDataSection } from './ManageDataSection';
 
 const WrapperDiv = styled.div`
     display: flex;
+    flex: 1;
 `;
 
 storiesOf('Managed Data Section', module)

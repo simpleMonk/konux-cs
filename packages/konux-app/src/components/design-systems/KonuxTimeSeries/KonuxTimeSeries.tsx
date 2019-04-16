@@ -18,32 +18,37 @@ const KonuxTimeSeries: FunctionComponent<TimeSeriesType> = (
   props: TimeSeriesType
 ) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const getContainerWidth = () => {
+    return containerRef.current
+      ? containerRef.current.offsetWidth - OFFSET * 2
+      : 300;
+  };
+  const getContainerHeight = () => {
+    return containerRef.current
+      ? containerRef.current.offsetHeight - OFFSET * 3
+      : 300;
+  };
 
   useEffect(() => {
     const chartOptions: ChartOptions = {
-      width: containerRef.current
-        ? containerRef.current.offsetWidth - OFFSET * 2
-        : 300,
-      height: containerRef.current
-        ? containerRef.current.offsetHeight - OFFSET * 3
-        : 300,
+      width: getContainerWidth(),
+      height: getContainerHeight(),
       margin: {
         top: OFFSET,
         right: OFFSET,
         bottom: OFFSET * 3,
         left: OFFSET
       },
-      data: [
-        { x: '2018-04-20T12:45:03+04:00', y: 1 },
-        { x: '2018-04-21T12:45:03+04:00', y: 10 },
-        { x: '2018-04-22T12:45:03+04:00', y: 12 },
-        { x: '2018-04-23T12:45:03+04:00', y: 6 }
-      ]
+      data: props.data
     };
     const lineChart = LineChart(containerRef.current, chartOptions);
+    const redrawLineChart = () =>
+      lineChart.render(getContainerWidth(), getContainerHeight());
+
     lineChart.initialize();
+    window.addEventListener('resize', redrawLineChart);
     return () => {
-      lineChart.destroy();
+      window.addEventListener('resize', redrawLineChart);
     };
   });
 
