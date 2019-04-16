@@ -7,7 +7,7 @@ import './KonuxTimeSeries.scss';
 
 const OFFSET = 50;
 
-const TimeSeriesContianer = styled.div`
+const TimeSeriesContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -50,9 +50,9 @@ const KonuxTimeSeries: FunctionComponent<TimeSeriesType> = (
     return () => {
       window.addEventListener('resize', redrawLineChart);
     };
-  });
+  }, [props.data]);
 
-  return <TimeSeriesContianer ref={containerRef} />;
+  return <TimeSeriesContainer ref={containerRef} />;
 };
 
 export { KonuxTimeSeries };

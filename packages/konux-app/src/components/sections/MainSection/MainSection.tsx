@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import { ManageDataSection } from '../ManageDataSection/ManageDataSection';
 import { VisualSection } from '../VisualSection/VisualSection';
 import { Colors } from '../../../utils/Colors';
 import { TimeSeriesType } from '../../types';
+import { API_GET_URL } from '../../../utils/AppConstants';
 
 const StyledMainSection = styled.section`
   width: 100%;
@@ -23,16 +25,45 @@ const StyledMainSection = styled.section`
 
 const MainSection = () => {
   const [timeSeriesData, setTimeSeriesData] = useState<TimeSeriesType>({
-    data: [
-      { x: '2018-04-20T12:45:03+04:00', y: 1 },
-      { x: '2018-04-21T12:45:03+04:00', y: 10 },
-      { x: '2018-04-22T12:45:03+04:00', y: 12 },
-      { x: '2018-04-23T12:45:03+04:00', y: 6 }
-    ]
+    data: []
   });
+
+  const [fetchState, dispatch] = useReducer(reducer, 'NOT_LOADED');
+
+  function reducer(state: any, action: any) {
+    switch (action.type) {
+      case 'LOADED':
+        setTimeSeriesData({ data: action.data });
+        return 'LOADED';
+        break;
+      case 'NOT_LOADED':
+        return 'NOT_LOADED';
+        break;
+      case 'ERROR':
+        return 'ERROR';
+        break;
+      default:
+        return 'NOT_LOADED';
+    }
+  }
+
+  useEffect(() => {
+    async function callGetApi() {
+      const results = await axios(API_GET_URL);
+      if (results.status === 200) {
+        dispatch({ type: 'LOADED', data: results.data.values });
+      } else {
+        dispatch({ type: 'ERROR', data: [] });
+      }
+    }
+    callGetApi();
+  }, [dispatch]);
+
+  const props = { ...timeSeriesData, fetchState: fetchState };
+
   return (
     <StyledMainSection>
-      <VisualSection {...timeSeriesData} />
+      <VisualSection {...props} />
       <ManageDataSection />
     </StyledMainSection>
   );

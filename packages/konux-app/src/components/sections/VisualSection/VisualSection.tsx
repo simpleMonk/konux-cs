@@ -17,12 +17,69 @@ const StyledFlexibleLayout = styled(FlexibleLayout)`
   background: ${Colors.WHITE};
 `;
 
-const VisualSection: FunctionComponent<TimeSeriesType> = (
-  props: TimeSeriesType
-) => (
-  <StyledFlexibleLayout>
-    <KonuxTimeSeries {...props} />
-  </StyledFlexibleLayout>
+const ErrorContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+`;
+
+const PlaceHolderDiv = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex: 1 1 auto;
+  background: ${Colors.WHITE};
+  justify-content: center;
+  align-items: center;
+`;
+
+const InnerPlaceHolderDiv = styled.div`
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  display: flex;
+  flex: 1 1 auto;
+  background: ${Colors.LIGHTESTGRAY};
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+`;
+
+interface Props extends TimeSeriesType {
+  fetchState: string;
+}
+
+function getView(props: Props) {
+  switch (props.fetchState) {
+    case 'LOADED':
+      return <KonuxTimeSeries {...props} />;
+      break;
+    case 'NOT_LOADED':
+      return (
+        <PlaceHolderDiv>
+          <InnerPlaceHolderDiv>
+            <h3>Loading...</h3>
+          </InnerPlaceHolderDiv>
+        </PlaceHolderDiv>
+      );
+      break;
+    case 'ERROR':
+      return (
+        <ErrorContainer>
+          {' '}
+          <h3>Error fetching Data.</h3>
+        </ErrorContainer>
+      );
+      break;
+    default:
+      return <PlaceHolderDiv />;
+  }
+}
+
+const VisualSection: FunctionComponent<Props> = (props: Props) => (
+  <StyledFlexibleLayout>{getView(props as Props)}</StyledFlexibleLayout>
 );
 VisualSection.displayName = 'VisualSection';
 
