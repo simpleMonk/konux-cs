@@ -20,9 +20,8 @@ const LineChart = (dom: HTMLDivElement | null, chartOptions: ChartOptions) => {
   const height = chartOptions.height;
 
   // Parse Time and Formatter
-  const parseTime = d3.timeParse('%Y-%m-%dT%H:%M:%S%Z');
   const timeValue = function(d: Point) {
-    return parseTime(d.x);
+    return new Date(d.x);
   };
   const dataset: Array<NewPointLike> = chartOptions.data.map(function(
     d: Point,
@@ -122,7 +121,7 @@ const LineChart = (dom: HTMLDivElement | null, chartOptions: ChartOptions) => {
       .attr('dy', '.15em')
       .attr('transform', 'rotate(-55)');
 
-    // Ass Y Axis
+    // Add Y Axis
     svg
       .select('.y.axis')
       .attr('transform', `translate( ${margin.left}, 0)`)
