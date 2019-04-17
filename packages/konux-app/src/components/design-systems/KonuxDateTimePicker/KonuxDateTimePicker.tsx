@@ -4,6 +4,8 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Colors } from '../../../utils/Colors';
 import { DateTimeProps } from '../../types';
+import './KonuxDateTimePicker.scss';
+
 
 const StyledDatePicker = styled(DatePicker)`
   display: block;
