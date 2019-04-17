@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect, useReducer, useRef } from 'react';
+import * as d3 from 'd3';
 import styled from 'styled-components';
 import axios from 'axios';
 import { ManageDataSection } from '../ManageDataSection/ManageDataSection';
 import { VisualSection } from '../VisualSection/VisualSection';
 import { Colors } from '../../../utils/Colors';
-import { TimeSeriesType } from '../../types';
+import { TimeSeriesType, Point } from '../../types';
 import { API_GET_URL } from '../../../utils/AppConstants';
 
 const StyledMainSection = styled.section`
@@ -59,12 +60,30 @@ const MainSection = () => {
     callGetApi();
   }, [dispatch]);
 
-  const props = { ...timeSeriesData, fetchState: fetchState };
+  const timeSeriesProps = { ...timeSeriesData, fetchState: fetchState };
+  const compareDatePoints = (a: Point, b: Point) => {
+    let same = new Date(a.x).getTime() === new Date(b.x).getTime();
+    if (same) return 0;
+    // Check if the first is greater than second
+    if (a.x > b.x) return 1;
+    // Check if the first is less than second
+    if (a.x < b.x) return -1;
+
+    return 0;
+  };
+  const handleNewDataPoint = (newDataPoint: Point) => {
+    dispatch({ type: 'NOT_LOADED' });
+    const newTimeSeriesData = [...timeSeriesData.data, newDataPoint].sort(
+      compareDatePoints
+    );
+    dispatch({ type: 'LOADED', data: newTimeSeriesData });
+  };
+  const manageDataProps = { handleNewDataPoint: handleNewDataPoint };
 
   return (
     <StyledMainSection>
-      <VisualSection {...props} />
-      <ManageDataSection />
+      <VisualSection {...timeSeriesProps} />
+      <ManageDataSection {...manageDataProps} />
     </StyledMainSection>
   );
 };

@@ -34,7 +34,10 @@ const KonuxDateTimePicker = (props: DateTimePropsWithEvents) => {
   const [selectedDate, setSelectedDate] = useState(
     props && props.dateTime ? new Date(props.dateTime) : new Date()
   );
-  const handleDateChange = (dt: Date,ev:React.FormEvent<HTMLInputElement>) => {
+  const handleDateChange = (
+    dt: Date,
+    ev: React.FormEvent<HTMLInputElement>
+  ) => {
     setSelectedDate(dt);
     props.onChange(new Date(dt));
   };

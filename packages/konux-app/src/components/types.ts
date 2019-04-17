@@ -19,5 +19,9 @@ export interface ChartOptions extends TimeSeriesType {
 }
 
 export interface DateTimeProps {
-  dateTime?: string;
+  dateTime?: Date;
+}
+
+export interface DateTimePropsWithEvents extends DateTimeProps {
+  onChange(dt: Date): void;
 }

@@ -14,6 +14,9 @@ interface NewPointLike {
  *   - Initialize and Render
  */
 const LineChart = (dom: HTMLDivElement | null, chartOptions: ChartOptions) => {
+  while (dom && dom.firstChild) {
+    dom.removeChild(dom.firstChild);
+  }
   // Set Margin, Width and Height
   const margin = chartOptions.margin;
   const width = chartOptions.width;
@@ -169,7 +172,7 @@ const LineChart = (dom: HTMLDivElement | null, chartOptions: ChartOptions) => {
       .y(function(d: any) {
         return yScale(d.y);
       })
-      .curve(d3.curveCardinal.tension(0.5));
+      .curve(d3.curveLinear);
 
     svg.append('g').attr('class', 'x axis');
     svg.append('g').attr('class', 'y axis');
