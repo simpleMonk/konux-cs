@@ -3,9 +3,8 @@ import styled from 'styled-components';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Colors } from '../../../utils/Colors';
-import { DateTimeProps } from '../../types';
+import { DateTimePropsWithEvents } from '../../types';
 import './KonuxDateTimePicker.scss';
-
 
 const StyledDatePicker = styled(DatePicker)`
   display: block;
@@ -31,12 +30,13 @@ const StyledDatePicker = styled(DatePicker)`
   }
 `;
 
-const KonuxDateTimePicker = (props?: DateTimeProps) => {
+const KonuxDateTimePicker = (props: DateTimePropsWithEvents) => {
   const [selectedDate, setSelectedDate] = useState(
     props && props.dateTime ? new Date(props.dateTime) : new Date()
   );
-  const handleDateChange = (dt: Date) => {
+  const handleDateChange = (dt: Date,ev:React.FormEvent<HTMLInputElement>) => {
     setSelectedDate(dt);
+    props.onChange(new Date(dt));
   };
 
   return (
