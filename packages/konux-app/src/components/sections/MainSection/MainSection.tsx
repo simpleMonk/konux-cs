@@ -24,13 +24,21 @@ const StyledMainSection = styled.section`
   }
 `;
 
+/**
+ * Mainsection to render visual and add form
+ */
 const MainSection = () => {
+  //State to manage timeseries data
   const [timeSeriesData, setTimeSeriesData] = useState<TimeSeriesType>({
     data: []
   });
 
-  const [fetchState, dispatch] = useReducer(reducer, 'NOT_LOADED');
+  //state to manage loading
+  const [fetchState, dispatch] = useReducer(reducer, 'NOT_LOADED'); //ERROR/LOADED
 
+  /**
+   * Reducer to handle different loading states
+   */
   function reducer(state: any, action: any) {
     switch (action.type) {
       case 'LOADED':
@@ -48,6 +56,7 @@ const MainSection = () => {
     }
   }
 
+  // Effect to get data
   useEffect(() => {
     async function callGetApi() {
       const results = await axios(API_GET_URL);

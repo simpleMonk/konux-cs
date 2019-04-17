@@ -78,6 +78,10 @@ function getView(props: Props) {
   }
 }
 
+/**
+ * Visual section to render Timeseries chart based on Data or
+ * render error/placeholder appropriately
+ */
 const VisualSection: FunctionComponent<Props> = (props: Props) => (
   <StyledFlexibleLayout>{getView(props as Props)}</StyledFlexibleLayout>
 );

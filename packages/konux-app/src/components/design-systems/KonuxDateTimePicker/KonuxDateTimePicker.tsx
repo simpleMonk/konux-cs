@@ -30,6 +30,9 @@ const StyledDatePicker = styled(DatePicker)`
   }
 `;
 
+/**
+ * Datetime picker to set and handle date time values.
+ */
 const KonuxDateTimePicker = (props: DateTimePropsWithEvents) => {
   const [selectedDate, setSelectedDate] = useState(
     props && props.dateTime ? new Date(props.dateTime) : new Date()

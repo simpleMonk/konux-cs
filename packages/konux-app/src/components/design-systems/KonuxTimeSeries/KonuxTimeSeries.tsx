@@ -14,6 +14,9 @@ const TimeSeriesContainer = styled.div`
   flex: 1 1 auto;
 `;
 
+/**
+ * Responsive timeseries components
+ */
 const KonuxTimeSeries: FunctionComponent<TimeSeriesType> = (
   props: TimeSeriesType
 ) => {

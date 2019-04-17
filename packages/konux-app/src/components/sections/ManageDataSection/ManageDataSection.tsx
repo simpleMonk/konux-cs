@@ -54,6 +54,10 @@ interface Props {
   handleNewDataPoint(point: Point): void;
 }
 
+/**
+ * ManageDataSection is a stateful component to render add form and
+ * push the new data to parent component
+ */
 function ManageDataSection(props: Props) {
   const [dataPoint, setDataPoint] = useState('0');
   const [dataPointDateTime, setDataPointDateTime] = useState(new Date());
@@ -65,7 +69,6 @@ function ManageDataSection(props: Props) {
 
   const handleDateTimeChange = (dt: Date) => {
     setDataPointDateTime(dt);
-    console.log('dataPointDateTime:::', dataPointDateTime);
   };
 
   const handleOnAddPoint = (ev: React.FormEvent<HTMLButtonElement>) => {

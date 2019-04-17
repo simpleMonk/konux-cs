@@ -3,4 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 
+/**
+ * Mount the App
+ */
 ReactDOM.render(<App />, document.getElementById('root'));
